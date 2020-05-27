@@ -5,7 +5,7 @@ The **example.txt[./example.txt]** file will be the input file used in examples 
 
 ## The AWK command template
 
->---
+---
 > `awk` '**lines_selector** `{expression 1; expression 2; ...}`' **file(s)**
 ---
 
