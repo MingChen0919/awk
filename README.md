@@ -102,4 +102,30 @@ In this command line, we used two `lines_selectors + {}`s:
     
 ## Special `lines_selectors`: `BEGIN` and `END`
 
+You can think of `BEGIN` and `END` as special `lines_selector`s:
+
++ `BEGIN`: select line 0, which is a line that does not exist, which also means you can add texts to this line and it 
+will show at the beginning of your output.
++ `END`: select the line after the last line of your input file. If you add some text to this line, it will show at the
+end of your final output.
+
+`BEGIN` and `END` are also the places where you modify built-in variable values. 
+
+### Example
+
+>`awk 'BEGIN{print "SN\tLN\tAS\tUR\tM5"}   /^@SQ/{for (i=1; i<=NF; i++) gsub(".+\:", "", $i); gsub($1, ""); print}' example.txt`
+
+``` 
+SN	LN	AS	UR	M5
+ 1 249250621 NCBI37 /data/local/ref/GATK/human_g1k_v37.fasta 1b22b98cdeb4a9304cb5d48026a85128
+ 2 243199373 NCBI37 /data/local/ref/GATK/human_g1k_v37.fasta a0d9851da00400dec1098a9255ac712e
+ 3 198022430 NCBI37 /data/local/ref/GATK/human_g1k_v37.fasta fdfd811849cc2fadebc929bb925902e5
+```
+
+## What's next?
+
+Now you know the lego building skills, the next step would be to find your lego piecies used by awk. 
+[Here](awk_cheatsheets.pdf) is an awk cheatsheet that I use often.
+
+
 
