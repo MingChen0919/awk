@@ -15,16 +15,18 @@ from the input file, then you can write expressions to sequentially manipulate t
 
 We will extract the following text content from our example.txt file.
 
->file:/data/local/ref/GATK/human_g1k_v37.fasta
->file:/data/local/ref/GATK/human_g1k_v37.fasta
->file:/data/local/ref/GATK/human_g1k_v37.fasta
+```
+file:/data/local/ref/GATK/human_g1k_v37.fasta
+file:/data/local/ref/GATK/human_g1k_v37.fasta
+file:/data/local/ref/GATK/human_g1k_v37.fasta
+```
 
 * Command: `awk '/UR.+fasta/ {gsub("UR:file:", "", $5); print $5}' example.txt`
 * Explain:
     + **lines_select**: `/UR.+fasta/`, selecting lines using regex pattern `UR.+fasta`
     + `{gsub("UR:file:", "", $5); print $5}` - a list of expressions sequentially operating on the above selected lines
-        - expression 1: `gsub("UR:file:", "", $5)` - replacing `UR:file:` in 5th field of each line with empty
-        - expression 2: `print $5` - only print the 5th field of each manipulated line in expression 1.
+        - **expression 1**: `gsub("UR:file:", "", $5)` - replacing `UR:file:` in 5th field of each line with empty
+        - **expression 2**: `print $5` - only print the 5th field of each manipulated line in **expression 1**.
 
 
   
