@@ -5,7 +5,9 @@ The **example.txt[./example.txt]** file will be the input file used in examples 
 
 ## The AWK command template
 
+>---
 > `awk` '**lines_selector** `{expression 1; expression 2; ...}`' **file(s)**
+---
 
 The above awk command template shows you the very basic components of an awk command line: lines_selector + a list of `;`
 separated expressions within a pair of `{}`.  
@@ -125,7 +127,7 @@ SN	LN	AS	UR	M5
 ## What's next?
 
 Now you know the lego building skills, the next step would be to find your lego piecies used by awk. 
-[Here](awk_cheatsheets.pdf) is an awk cheatsheet that I use often.
+[Here](awk_cheatsheets.pdf) is an awk cheatsheet that I like a lot and could be useful to you, too.
 
 
 
