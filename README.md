@@ -124,6 +124,41 @@ SN	LN	AS	UR	M5
  3 198022430 NCBI37 /data/local/ref/GATK/human_g1k_v37.fasta fdfd811849cc2fadebc929bb925902e5
 ```
 
+## Change built-in variable values
+
+We can change the values of **built-in variables** using `BEGIN {var=value}`. To force the change to apply, we need
+to do something to the selected lines in the following `lines_selector + {}` to force the change to happen.
+
+See the following two examples to understand the effect. We want to change the default `OFS` from `\t` to `--`.
+
+* **Example 1**
+
+The second `lines_selector {}` simply has a `print` in it, it does not manipulate the text. Therefore, the changed
+`OFS` can't apply to the text. The fields of the output are still separated by the default sep `\t`.
+
+>awk 'BEGIN{OFS="--"} /^@SQ/ {print}' example.txt 
+
+Output
+``` 
+@SQ	SN:1	LN:249250621	AS:NCBI37	UR:file:/data/local/ref/GATK/human_g1k_v37.fasta	M5:1b22b98cdeb4a9304cb5d48026a85128
+@SQ	SN:2	LN:243199373	AS:NCBI37	UR:file:/data/local/ref/GATK/human_g1k_v37.fasta	M5:a0d9851da00400dec1098a9255ac712e
+@SQ	SN:3	LN:198022430	AS:NCBI37	UR:file:/data/local/ref/GATK/human_g1k_v37.fasta	M5:fdfd811849cc2fadebc929bb925902e5
+```
+
+* **Example 2**
+
+Now this time, we add an expression `$1=$1`, which means taking the **field 1** text and reassign it back to **field 1**.
+Although it didn't change the content, it did "do something" to the selected lines.
+
+>awk 'BEGIN{OFS="--"} /^@SQ/ {$1=$1; print}' example.txt 
+
+```
+@SQ--SN:1--LN:249250621--AS:NCBI37--UR:file:/data/local/ref/GATK/human_g1k_v37.fasta--M5:1b22b98cdeb4a9304cb5d48026a85128
+@SQ--SN:2--LN:243199373--AS:NCBI37--UR:file:/data/local/ref/GATK/human_g1k_v37.fasta--M5:a0d9851da00400dec1098a9255ac712e
+@SQ--SN:3--LN:198022430--AS:NCBI37--UR:file:/data/local/ref/GATK/human_g1k_v37.fasta--M5:fdfd811849cc2fadebc929bb925902e5
+```
+
+
 ## What's next?
 
 Now you know the lego building skills, the next step would be to find your lego piecies used by awk. 
