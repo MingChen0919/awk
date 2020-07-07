@@ -1,7 +1,7 @@
 # AWK
 AWK is a very powerful tool for text processing. This tutorial will teach you how to use AWK in just a few minutes! 
 
-The **example.txt[./example.txt]** file will be the input file used in examples in this tutorial.
+The **[example.txt](./example.txt)** file will be the input file used in examples in this tutorial.
 
 ## The AWK command template
 
